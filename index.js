@@ -7,26 +7,25 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
-let connectedClient = null; // Store the connected client
+let connectedClient = null; 
 
 wss.on("connection", (ws) => {
   console.log("Client connected 2");
   
-
-  connectedClient = ws; // Store the connected client
+  connectedClient = ws; 
 
   ws.on("message", (message) => {
     console.log(`Received message => ${message}`);
     console.log("About to call sendHandleClosePressEvent");
     setTimeout(() => {
-      sendHandleClosePressEvent(); // Call the function to send the event
+      sendHandleClosePressEvent(); 
     }, 3000);
   });
 
 
   ws.on("close", () => {
     console.log("Client disconnected");
-    connectedClient = null; // Reset the connected client
+    connectedClient = null; 
   });
 });
 
